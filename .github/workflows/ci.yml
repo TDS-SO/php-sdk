@@ -1,0 +1,101 @@
+name: CI
+
+on:
+  push:
+    branches: [ main, develop ]
+  pull_request:
+    branches: [ main ]
+
+jobs:
+  test:
+    runs-on: ${{ matrix.os }}
+    strategy:
+      fail-fast: false
+      matrix:
+        os: [ubuntu-latest]
+        php: ['7.2', '7.3', '7.4', '8.0', '8.1', '8.2', '8.3']
+        dependency-version: [prefer-lowest, prefer-stable]
+
+    name: PHP ${{ matrix.php }} - ${{ matrix.dependency-version }} - ${{ matrix.os }}
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: ${{ matrix.php }}
+          extensions: mbstring, json, curl
+          coverage: xdebug
+          tools: composer:v2
+
+      - name: Validate composer.json
+        run: composer validate --strict
+
+      - name: Get Composer cache directory
+        id: composer-cache
+        run: echo "dir=$(composer config cache-files-dir)" >> $GITHUB_OUTPUT
+
+      - name: Cache Composer dependencies
+        uses: actions/cache@v3
+        with:
+          path: ${{ steps.composer-cache.outputs.dir }}
+          key: ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ matrix.dependency-version }}-${{ hashFiles('**/composer.json') }}
+          restore-keys: |
+            ${{ runner.os }}-php-${{ matrix.php }}-composer-${{ matrix.dependency-version }}-
+            ${{ runner.os }}-php-${{ matrix.php }}-composer-
+
+      - name: Install dependencies
+        run: |
+          composer update --${{ matrix.dependency-version }} --prefer-dist --no-interaction --no-progress
+
+      - name: Run PHP CS Fixer
+        if: matrix.php == '8.2' && matrix.dependency-version == 'prefer-stable'
+        run: |
+          composer require --dev friendsofphp/php-cs-fixer --quiet
+          vendor/bin/php-cs-fixer fix --dry-run --diff --verbose
+
+      - name: Run PHPStan
+        if: matrix.php >= '7.4' && matrix.dependency-version == 'prefer-stable'
+        run: |
+          composer require --dev phpstan/phpstan --quiet
+          vendor/bin/phpstan analyse --no-progress
+
+      - name: Run tests
+        run: vendor/bin/phpunit --coverage-text
+
+      - name: Upload coverage to Codecov
+        if: matrix.php == '8.2' && matrix.dependency-version == 'prefer-stable' && matrix.os == 'ubuntu-latest'
+        uses: codecov/codecov-action@v3
+        with:
+          files: ./coverage.xml
+          fail_ci_if_error: false
+
+  code-quality:
+    runs-on: ubuntu-latest
+    name: Code Quality
+
+    steps:
+      - name: Checkout code
+        uses: actions/checkout@v4
+
+      - name: Setup PHP
+        uses: shivammathur/setup-php@v2
+        with:
+          php-version: '8.2'
+          extensions: mbstring, json, curl
+          tools: composer:v2, phpmd, phpcpd, psalm
+
+      - name: Install dependencies
+        run: composer install --prefer-dist --no-interaction --no-progress
+
+      - name: Run PHPMD
+        run: phpmd src text cleancode,codesize,controversial,design,naming,unusedcode --exclude vendor/
+
+      - name: Run PHPCPD
+        run: phpcpd src/
+
+      - name: Run Psalm
+        continue-on-error: true
+        run: psalm --no-cache

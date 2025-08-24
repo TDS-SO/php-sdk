@@ -1,0 +1,77 @@
+# Composer
+/vendor/
+composer.lock
+
+# IDE and editor files
+.idea/
+.vscode/
+*.sublime-project
+*.sublime-workspace
+.project
+.settings/
+*.swp
+*.swo
+*~
+.DS_Store
+Thumbs.db
+
+# Testing
+/phpunit.xml
+.phpunit.result.cache
+.phpunit.cache/
+/coverage/
+*.coverage
+*.cover
+.coverage
+htmlcov/
+
+# Environment and configuration
+.env
+.env.local
+.env.*.local
+config.local.php
+
+# Build artifacts
+/build/
+/dist/
+/docs/_build/
+*.phar
+
+# Logs
+*.log
+/logs/
+/var/log/
+
+# Cache
+/cache/
+/tmp/
+*.cache
+
+# System files
+.DS_Store
+Thumbs.db
+desktop.ini
+
+# PHP CS Fixer
+.php_cs.cache
+.php-cs-fixer.cache
+
+# PHPStan
+phpstan.neon
+phpstan-baseline.neon
+
+# Psalm
+psalm.xml
+psalm-baseline.xml
+
+# PHPMD
+phpmd.xml
+
+# Documentation build
+/docs/api/
+/docs/build/
+
+# Package managers
+node_modules/
+npm-debug.log
+yarn-error.log

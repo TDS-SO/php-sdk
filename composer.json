@@ -1,0 +1,74 @@
+{
+    "name": "tds-so/php-sdk",
+    "description": "Official PHP SDK for TDS.SO API",
+    "type": "library",
+    "license": "MIT",
+    "authors": [
+        {
+            "name": "TDS.SO",
+            "email": "support@tds.so"
+        }
+    ],
+    "require": {
+        "php": ">=7.2",
+        "ext-json": "*",
+        "guzzlehttp/guzzle": "^6.5 || ^7.0",
+        "psr/http-client": "^1.0",
+        "psr/http-message": "^1.0"
+    },
+    "require-dev": {
+        "phpunit/phpunit": "^8.5 || ^9.0",
+        "mockery/mockery": "^1.3",
+        "friendsofphp/php-cs-fixer": "^3.0",
+        "phpstan/phpstan": "^1.0",
+        "phpstan/phpstan-strict-rules": "^1.0",
+        "vimeo/psalm": "^4.0 || ^5.0"
+    },
+    "autoload": {
+        "psr-4": {
+            "TdsSo\\Sdk\\": "src/"
+        }
+    },
+    "autoload-dev": {
+        "psr-4": {
+            "TdsSo\\Sdk\\Tests\\": "tests/"
+        }
+    },
+    "scripts": {
+        "test": "phpunit",
+        "test-coverage": "phpunit --coverage-html coverage",
+        "cs-fix": "php-cs-fixer fix",
+        "cs-check": "php-cs-fixer fix --dry-run --diff",
+        "analyse": "phpstan analyse",
+        "psalm": "psalm",
+        "check": [
+            "@cs-check",
+            "@analyse",
+            "@test"
+        ],
+        "fix": [
+            "@cs-fix",
+            "@test"
+        ]
+    },
+    "scripts-descriptions": {
+        "test": "Run unit tests",
+        "test-coverage": "Run unit tests with code coverage",
+        "cs-fix": "Fix code style issues",
+        "cs-check": "Check for code style issues",
+        "analyse": "Run static analysis with PHPStan",
+        "psalm": "Run static analysis with Psalm",
+        "check": "Run all quality checks",
+        "fix": "Fix code style and run tests"
+    },
+    "config": {
+        "sort-packages": true,
+        "optimize-autoloader": true,
+        "preferred-install": "dist",
+        "allow-plugins": {
+            "composer/package-versions-deprecated": true
+        }
+    },
+    "minimum-stability": "stable",
+    "prefer-stable": true
+}
