@@ -65,6 +65,26 @@ class CreateRedirectBuilder
     }
 
     /**
+     * Set link expiration date and time.
+     */
+    public function setExpiredAt(string $expiredAt): self
+    {
+        $this->params['expired_at'] = $expiredAt;
+
+        return $this;
+    }
+
+    /**
+     * Set folder for organizing links.
+     */
+    public function setFolder(string $folder): self
+    {
+        $this->params['folder'] = $folder;
+
+        return $this;
+    }
+
+    /**
      * Build parameters array.
      */
     public function build(): array

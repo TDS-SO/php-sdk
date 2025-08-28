@@ -30,7 +30,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/denis/PhpstormProjects/php-sdk/src/Builders/CreateRedirectBuilder.php' => 
     array (
-      0 => '1936dd8cffc010a4299b7c3987069cda2d8e13b5',
+      0 => '660cd78835dcba5a7aed535769d60911b12edabe',
       1 => 
       array (
         0 => 'tdsso\\sdk\\builders\\createredirectbuilder',
@@ -42,7 +42,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'tdsso\\sdk\\builders\\withoutdomainchecking',
         3 => 'tdsso\\sdk\\builders\\setcheckvk',
         4 => 'tdsso\\sdk\\builders\\setnocache',
-        5 => 'tdsso\\sdk\\builders\\build',
+        5 => 'tdsso\\sdk\\builders\\setexpiredat',
+        6 => 'tdsso\\sdk\\builders\\setfolder',
+        7 => 'tdsso\\sdk\\builders\\build',
       ),
       3 => 
       array (
@@ -50,7 +52,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/denis/PhpstormProjects/php-sdk/src/Builders/SetLinksBuilder.php' => 
     array (
-      0 => 'e8ae4ae3e0a667e2bc1469e6dcb756df73e5873b',
+      0 => '041f479fe2df2e3c7d09b8cbd073868b58015d81',
       1 => 
       array (
         0 => 'tdsso\\sdk\\builders\\setlinksbuilder',
@@ -62,7 +64,9 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         2 => 'tdsso\\sdk\\builders\\settemplatename',
         3 => 'tdsso\\sdk\\builders\\setfolder',
         4 => 'tdsso\\sdk\\builders\\setgroup',
-        5 => 'tdsso\\sdk\\builders\\build',
+        5 => 'tdsso\\sdk\\builders\\setexpiredat',
+        6 => 'tdsso\\sdk\\builders\\setlinkids',
+        7 => 'tdsso\\sdk\\builders\\build',
       ),
       3 => 
       array (
@@ -477,7 +481,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/denis/PhpstormProjects/php-sdk/src/ValueObjects/Link.php' => 
     array (
-      0 => '8d04b595459a6fe152b4931ac9401e88d1d44f8c',
+      0 => '04dde3d8cf2a6b5ec1d85fc575756ee96d24d11f',
       1 => 
       array (
         0 => 'tdsso\\sdk\\valueobjects\\link',
@@ -485,15 +489,18 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
       2 => 
       array (
         0 => 'tdsso\\sdk\\valueobjects\\__construct',
-        1 => 'tdsso\\sdk\\valueobjects\\getlinkredirect',
-        2 => 'tdsso\\sdk\\valueobjects\\getredirectto',
-        3 => 'tdsso\\sdk\\valueobjects\\gettotalclicks',
-        4 => 'tdsso\\sdk\\valueobjects\\getmobileclicks',
-        5 => 'tdsso\\sdk\\valueobjects\\getbotsclicks',
-        6 => 'tdsso\\sdk\\valueobjects\\getuniqueclicks',
-        7 => 'tdsso\\sdk\\valueobjects\\getcreatedtime',
-        8 => 'tdsso\\sdk\\valueobjects\\getcreatedat',
-        9 => 'tdsso\\sdk\\valueobjects\\toarray',
+        1 => 'tdsso\\sdk\\valueobjects\\getlinkid',
+        2 => 'tdsso\\sdk\\valueobjects\\getlinkredirect',
+        3 => 'tdsso\\sdk\\valueobjects\\getredirectto',
+        4 => 'tdsso\\sdk\\valueobjects\\gettotalclicks',
+        5 => 'tdsso\\sdk\\valueobjects\\getmobileclicks',
+        6 => 'tdsso\\sdk\\valueobjects\\getbotsclicks',
+        7 => 'tdsso\\sdk\\valueobjects\\getuniqueclicks',
+        8 => 'tdsso\\sdk\\valueobjects\\getcreatedtime',
+        9 => 'tdsso\\sdk\\valueobjects\\getcreatedat',
+        10 => 'tdsso\\sdk\\valueobjects\\getexpiredat',
+        11 => 'tdsso\\sdk\\valueobjects\\getexpiredatdatetime',
+        12 => 'tdsso\\sdk\\valueobjects\\toarray',
       ),
       3 => 
       array (

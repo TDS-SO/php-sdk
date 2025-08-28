@@ -59,6 +59,7 @@ desktop.ini
 # PHPStan
 phpstan.neon
 phpstan-baseline.neon
+/.phpstan
 
 # Psalm
 psalm.xml
@@ -75,3 +76,4 @@ phpmd.xml
 node_modules/
 npm-debug.log
 yarn-error.log
+
