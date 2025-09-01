@@ -123,6 +123,14 @@ class Link
     }
 
     /**
+     * Get folder name.
+     */
+    public function getFolderName(): ?string
+    {
+        return $this->data['folder_name'] ?? null;
+    }
+
+    /**
      * Convert to array.
      */
     public function toArray(): array
