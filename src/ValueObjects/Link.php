@@ -17,6 +17,14 @@ class Link
     }
 
     /**
+     * Get link ID.
+     */
+    public function getLinkId(): ?string
+    {
+        return $this->data['link_id'] ?? null;
+    }
+
+    /**
      * Get redirect link.
      */
     public function getLinkRedirect(): ?string
@@ -87,6 +95,39 @@ class Link
         } catch (\Exception $e) {
             return null;
         }
+    }
+
+    /**
+     * Get expiration time.
+     */
+    public function getExpiredAt(): ?string
+    {
+        return $this->data['expired_at'] ?? null;
+    }
+
+    /**
+     * Get expiration time as DateTime.
+     */
+    public function getExpiredAtDateTime(): ?\DateTime
+    {
+        $time = $this->getExpiredAt();
+        if ($time === null) {
+            return null;
+        }
+
+        try {
+            return new \DateTime($time);
+        } catch (\Exception $e) {
+            return null;
+        }
+    }
+
+    /**
+     * Get folder name.
+     */
+    public function getFolderName(): ?string
+    {
+        return $this->data['folder_name'] ?? null;
     }
 
     /**

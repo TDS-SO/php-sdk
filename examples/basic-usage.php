@@ -4,6 +4,8 @@ declare(strict_types=1);
 
 require_once __DIR__ . '/../vendor/autoload.php';
 
+use TdsSo\Sdk\Builders\CreateRedirectBuilder;
+use TdsSo\Sdk\Builders\SetLinksBuilder;
 use TdsSo\Sdk\Exceptions\ApiException;
 use TdsSo\Sdk\TdsSoClient;
 
@@ -17,12 +19,18 @@ try {
     $linksResponse = $client->links()->getLinks(10);
 
     foreach ($linksResponse->getLinks() as $link) {
+        $expiredInfo = $link->getExpiredAt() ? 
+            sprintf(' | Истекает: %s', $link->getExpiredAt()) : 
+            '';
+            
         echo sprintf(
-            "Ссылка: %s -> %s | Клики: %d (уникальные: %d)\n",
+            "ID: %s | Ссылка: %s -> %s | Клики: %d (уникальные: %d)%s\n",
+            $link->getLinkId() ?? 'N/A',
             $link->getLinkRedirect(),
             $link->getRedirectTo(),
             $link->getTotalClicks(),
-            $link->getUniqueClicks()
+            $link->getUniqueClicks(),
+            $expiredInfo
         );
     }
 
@@ -66,14 +74,42 @@ try {
         );
     }
 
-    // Пример 4: Обновление редиректа для последней ссылки
-    echo "\n=== Обновление редиректа ===\n";
-    $updateResponse = $client->links()->setLastLink('https://new-target.example.com');
+    // Пример 4: Создание ссылки с новыми параметрами
+    echo "\n=== Создание новой ссылки ===\n";
+    $builder = (new CreateRedirectBuilder())
+        ->setTemplate('first')
+        ->setExpiredAt('2024-12-31 23:59:59')
+        ->setFolder('test-folder');
+
+    $createResponse = $client->create()->createRedirect(
+        'example.com',
+        'https://target.example.com',
+        $builder
+    );
+
+    if ($createResponse->get('response') === 'OK') {
+        echo "Ссылка создана!\n";
+        echo 'Ответ API: ' . print_r($createResponse->getResponse(), true) . "\n";
+        echo 'Папка: test-folder' . "\n";
+        echo 'Истекает: 2024-12-31 23:59:59' . "\n";
+    }
+
+    // Пример 5: Обновление ссылок с новыми параметрами
+    echo "\n=== Обновление ссылок ===\n";
+    $setBuilder = (new SetLinksBuilder())
+        ->setExpiredAt('2024-06-30 12:00:00')
+        ->setLinkIds(['link1', 'link2']);
+
+    $updateResponse = $client->links()->setLinks(
+        'https://new-target.example.com',
+        $setBuilder
+    );
 
     if ($updateResponse->get('response') === 'OK') {
-        echo "Редирект успешно обновлен!\n";
+        echo "Ссылки обновлены!\n";
         echo 'Новый редирект: ' . $updateResponse->get('new_redirect') . "\n";
         echo 'Обновлено ссылок: ' . $updateResponse->get('updated_count') . "\n";
+        echo 'Новое время истечения: 2024-06-30 12:00:00' . "\n";
     }
 } catch (ApiException $e) {
     echo "\n!!! Ошибка API !!!\n";

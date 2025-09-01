@@ -63,6 +63,28 @@ class SetLinksBuilder
     }
 
     /**
+     * Set link expiration date and time.
+     */
+    public function setExpiredAt(string $expiredAt): self
+    {
+        $this->params['expired_at'] = $expiredAt;
+
+        return $this;
+    }
+
+    /**
+     * Set array of specific link IDs to modify.
+     *
+     * @param array $linkIds Array of link IDs
+     */
+    public function setLinkIds(array $linkIds): self
+    {
+        $this->params['link_ids'] = $linkIds;
+
+        return $this;
+    }
+
+    /**
      * Build parameters array.
      */
     public function build(): array
