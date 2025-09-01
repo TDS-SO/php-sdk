@@ -21,7 +21,9 @@ class Link
      */
     public function getLinkId(): ?string
     {
-        return $this->data['link_id'] ?? null;
+        $linkId = $this->data['link_id'] ?? null;
+        
+        return $linkId !== null ? (string) $linkId : null;
     }
 
     /**

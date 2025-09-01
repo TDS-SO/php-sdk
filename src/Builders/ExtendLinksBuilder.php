@@ -85,6 +85,42 @@ class ExtendLinksBuilder
     }
 
     /**
+     * Set created from date filter.
+     *
+     * @param string $createdFrom Date in Y-m-d format
+     */
+    public function setCreatedFrom(string $createdFrom): self
+    {
+        $this->params['created_from'] = $createdFrom;
+
+        return $this;
+    }
+
+    /**
+     * Set created to date filter.
+     *
+     * @param string $createdTo Date in Y-m-d format
+     */
+    public function setCreatedTo(string $createdTo): self
+    {
+        $this->params['created_to'] = $createdTo;
+
+        return $this;
+    }
+
+    /**
+     * Set folder name filter.
+     *
+     * @param string $folderName Folder name
+     */
+    public function setFolderName(string $folderName): self
+    {
+        $this->params['folder_name'] = $folderName;
+
+        return $this;
+    }
+
+    /**
      * Build parameters array.
      */
     public function build(): array

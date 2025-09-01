@@ -14,15 +14,35 @@ class LinksService extends AbstractService
     /**
      * Get user links.
      *
-     * @param int    $offset Number of links to retrieve (default: 20)
-     * @param string $order  Sort order: DESC or ASC (default: DESC)
+     * @param int         $offset      Number of links to retrieve (default: 20)
+     * @param string      $order       Sort order: DESC or ASC (default: DESC)
+     * @param string|null $createdFrom Filter links created from this date (Y-m-d format)
+     * @param string|null $createdTo   Filter links created to this date (Y-m-d format)
+     * @param string|null $folderName  Filter links by folder name
      */
-    public function getLinks(int $offset = 20, string $order = 'DESC'): LinksResponse
-    {
+    public function getLinks(
+        int $offset = 20,
+        string $order = 'DESC',
+        ?string $createdFrom = null,
+        ?string $createdTo = null,
+        ?string $folderName = null
+    ): LinksResponse {
         $params = [
             'offset' => $offset,
             'order'  => $order,
         ];
+
+        if ($createdFrom !== null) {
+            $params['created_from'] = $createdFrom;
+        }
+
+        if ($createdTo !== null) {
+            $params['created_to'] = $createdTo;
+        }
+
+        if ($folderName !== null) {
+            $params['folder_name'] = $folderName;
+        }
 
         $response = $this->httpClient->get('get/links', $params);
 
