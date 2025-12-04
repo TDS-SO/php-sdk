@@ -85,6 +85,23 @@ class CreateRedirectBuilder
     }
 
     /**
+     * Set bot URLs (redirect URLs for bot traffic).
+     * Can be a string (comma-separated) or array of URLs.
+     *
+     * @param string|array $botUrls Comma-separated string or array of bot URLs
+     */
+    public function setBotUrls($botUrls): self
+    {
+        if (\is_array($botUrls)) {
+            $botUrls = implode(',', $botUrls);
+        }
+
+        $this->params['bot_urls'] = $botUrls;
+
+        return $this;
+    }
+
+    /**
      * Build parameters array.
      */
     public function build(): array

@@ -72,4 +72,23 @@ class CreateService extends AbstractService
 
         return $this->createRedirect($domain, $link, $builder);
     }
+
+    /**
+     * Create redirects with bot URLs support.
+     *
+     * @param string|array               $redirectDomains Comma-separated string or array of domains
+     * @param string|array               $linkLists       Comma-separated string or array of regular links
+     * @param string|array               $botUrls         Comma-separated string or array of bot URLs
+     * @param CreateRedirectBuilder|null $builder         Additional options
+     */
+    public function createRedirectWithBots($redirectDomains, $linkLists, $botUrls, ?CreateRedirectBuilder $builder = null): CreateResponse
+    {
+        if ($builder === null) {
+            $builder = new CreateRedirectBuilder();
+        }
+
+        $builder->setBotUrls($botUrls);
+
+        return $this->createRedirect($redirectDomains, $linkLists, $builder);
+    }
 }
