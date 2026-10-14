@@ -177,6 +177,21 @@ $response = $client->create()->createSingleRedirect(
     'single-domain.com',
     'https://single-target.com'
 );
+
+// Создать редиректы с отдельными URL для ботов
+$domains = ['domain1.com', 'domain2.com'];
+$links = ['https://target1.com', 'https://target2.com'];
+$botUrls = ['https://bot-target1.com', 'https://bot-target2.com'];
+
+// Удобный метод
+$response = $client->create()->createRedirectWithBots($domains, $links, $botUrls);
+
+// Или через builder
+$builder = (new CreateRedirectBuilder())
+    ->setTemplate('last')
+    ->setBotUrls($botUrls);
+
+$response = $client->create()->createRedirect($domains, $links, $builder);
 ```
 
 ## Обработка ошибок

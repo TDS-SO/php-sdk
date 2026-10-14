@@ -52,7 +52,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/denis/PhpstormProjects/php-sdk/src/Builders/SetLinksBuilder.php' => 
     array (
-      0 => '041f479fe2df2e3c7d09b8cbd073868b58015d81',
+      0 => '3d260d46cb42a54a77e485e74dfccf0d0a09be8e',
       1 => 
       array (
         0 => 'tdsso\\sdk\\builders\\setlinksbuilder',
@@ -66,7 +66,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         4 => 'tdsso\\sdk\\builders\\setgroup',
         5 => 'tdsso\\sdk\\builders\\setexpiredat',
         6 => 'tdsso\\sdk\\builders\\setlinkids',
-        7 => 'tdsso\\sdk\\builders\\build',
+        7 => 'tdsso\\sdk\\builders\\setcreatedfrom',
+        8 => 'tdsso\\sdk\\builders\\setcreatedto',
+        9 => 'tdsso\\sdk\\builders\\setfoldername',
+        10 => 'tdsso\\sdk\\builders\\build',
       ),
       3 => 
       array (
@@ -113,7 +116,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/denis/PhpstormProjects/php-sdk/src/Builders/ExtendLinksBuilder.php' => 
     array (
-      0 => 'b5a609573ba68a3830443ebb373498e65b71d6ab',
+      0 => '43476ad15cd71310c024f4886987fcf698edf7cc',
       1 => 
       array (
         0 => 'tdsso\\sdk\\builders\\extendlinksbuilder',
@@ -127,7 +130,10 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         4 => 'tdsso\\sdk\\builders\\settemplatename',
         5 => 'tdsso\\sdk\\builders\\setfolder',
         6 => 'tdsso\\sdk\\builders\\setgroup',
-        7 => 'tdsso\\sdk\\builders\\build',
+        7 => 'tdsso\\sdk\\builders\\setcreatedfrom',
+        8 => 'tdsso\\sdk\\builders\\setcreatedto',
+        9 => 'tdsso\\sdk\\builders\\setfoldername',
+        10 => 'tdsso\\sdk\\builders\\build',
       ),
       3 => 
       array (
@@ -401,7 +407,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/denis/PhpstormProjects/php-sdk/src/Services/LinksService.php' => 
     array (
-      0 => '437ed15017a5ae32a3d5604287edd5752cba4b6c',
+      0 => '8e06ff605d0b9401d475f09b48564a47f7e98201',
       1 => 
       array (
         0 => 'tdsso\\sdk\\services\\linksservice',
@@ -481,7 +487,7 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
     ),
     '/Users/denis/PhpstormProjects/php-sdk/src/ValueObjects/Link.php' => 
     array (
-      0 => '04dde3d8cf2a6b5ec1d85fc575756ee96d24d11f',
+      0 => '17b42ea7cfb123c6b1668e5abc0ca170d27f49d9',
       1 => 
       array (
         0 => 'tdsso\\sdk\\valueobjects\\link',
@@ -500,7 +506,8 @@ return \PHPStan\Cache\CacheItem::__set_state(array(
         9 => 'tdsso\\sdk\\valueobjects\\getcreatedat',
         10 => 'tdsso\\sdk\\valueobjects\\getexpiredat',
         11 => 'tdsso\\sdk\\valueobjects\\getexpiredatdatetime',
-        12 => 'tdsso\\sdk\\valueobjects\\toarray',
+        12 => 'tdsso\\sdk\\valueobjects\\getfoldername',
+        13 => 'tdsso\\sdk\\valueobjects\\toarray',
       ),
       3 => 
       array (
